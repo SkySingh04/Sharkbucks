@@ -10,7 +10,7 @@ import './page.css';
 import Chatbot from '../components/Chatbot';
 import { BsAlignCenter } from 'react-icons/bs';
 
-const DashboardPage: React.FC = () => {
+const DashboardPage = () => {
     const router = useRouter();
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -23,13 +23,13 @@ const DashboardPage: React.FC = () => {
         })
     }, []);
 
-    const handleViewApp = ({ applicationId }: any) => {
+    const handleViewApp = ({ applicationId }) => {
         // Push to view application page with the application id as a query parameter
         router.push(`/viewapplication?id=${applicationId}`);
     }
 
-    const [loanApplications, setLoanApplications] = useState<any>([]);
-    const [loggedInUser, setLoggedInUser] = useState<any>('');
+    const [loanApplications, setLoanApplications] = useState([]);
+    const [loggedInUser, setLoggedInUser] = useState('');
 
     // Fetch existing loan applications
     useEffect(() => {
@@ -41,7 +41,7 @@ const DashboardPage: React.FC = () => {
             console.log('Fetching loan applications for user:', loggedInUser);
             const docRef = getDocs(collection(db, "applications"));
             if (docRef) {
-                const applications: ((prevState: never[]) => never[]) | unknown[] = [];
+                const applications = [];
                 (await docRef).forEach((doc) => {
                     console.log(doc.data().userId);
                     if (doc.data().userId === loggedInUser) {
@@ -69,6 +69,12 @@ const DashboardPage: React.FC = () => {
         router.push('/newapplication');
     };
 
+    
+    const handleClick = ({ applicationId }) => {
+        // Push to view application page with the application id as a query parameter
+        router.push(`/bidslist?id=${applicationId}`);
+    };
+
     return (
          <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
             <ToastContainer />
@@ -88,15 +94,20 @@ const DashboardPage: React.FC = () => {
                     {loanApplications.length === 0? (
                         <li className="no-applications">No Loan Applications Found</li>
                     ) : (
-                        loanApplications.map((application: any) => (
+                        loanApplications.map((application) => (
                             <div key={application.id} className='application-card'>
                                 <h3 className='company-name'>{application.companyName}</h3>
                                 <p className='loan-details'>Amount: {application.loanAmount}</p>
                                 <p className='loan-details'>Status: {application.fundingStatus}</p>
                                 <p className='loan-details'>Funding Received: {application.fundingReceived}</p>
+                                <div className='buttons'>
                                 <button className='view-button' onClick={() => { handleViewApp({ applicationId: application.id }) }}>
                                     View Application
                                 </button>
+                                <button className='view-bid' onClick={() => {handleClick({applicationId: application.id}) }}>
+                                    View Bid
+                                </button>
+                                </div>
                             </div>
                         ))
                     )}

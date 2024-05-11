@@ -5,7 +5,19 @@
     grid-template-columns: 1fr 1fr;
     height: 100%;
 }
+.page{
+    background-color: #05101b;
+}
+.pref-button{
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
 
+}
 .section-title {
     text-align:center;
     justify-content: center;

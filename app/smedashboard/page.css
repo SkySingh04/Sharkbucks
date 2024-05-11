@@ -57,7 +57,10 @@
     display: flex;
     justify-content: space-between;
 }
-
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
 .view-button {
     padding: 8px 15px;
     border: none;
@@ -65,10 +68,18 @@
     cursor: pointer;
     font-size: 16px;
     align-self: left;
+    background-color: #007bff;
+    color: #fff;
 }
 
-.view-button {
-    background-color: #007bff;
+.view-bid{
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: left;
+    background-color: #99d98c;
     color: #fff;
 }
 

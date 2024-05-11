@@ -34,10 +34,10 @@ const SmeListingPage = () => {
     };
 
     return (
-        <div>
+        <div className="page">
             
             <h1 className="section-title mt-[100px]">Investor Dashboard</h1>
-            <button className="" onClick={()=>{router.push("/investorport")}}> VIEW PERSONALISED STARTUP LIST MADE JUST FOR YOU!!!</button>
+            <button className="pref flex justify-end mx-auto" onClick={()=>{router.push("/investorport")}}> View Personalised Preferences </button>
         <div className='investor-dashboard'>
             
             {/* Left half: Loan Applications */}
