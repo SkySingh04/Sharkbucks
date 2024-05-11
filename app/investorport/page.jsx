@@ -53,6 +53,7 @@ const InvestorDetailsForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Handle submit was called")
         const preferencesId = randomID();
         try{
             const preferenceData={
@@ -63,16 +64,17 @@ const InvestorDetailsForm = () => {
                 preferences: selectedPreferences
 
             };
-            const preferenceRef = doc(db, "preferences", userId);
+            const preferenceRef = doc(db, "preferences", preferencesId.toString());
             await setDoc(preferenceRef, preferenceData);
             console.log("sdfghjk");
+
+            router.push("/investorpreference/?id=" + preferencesId);
         }
             catch (e) {
                 console.error("Error adding/updating document: ", e);
               }
 
         }
-        
 
     return (
         
@@ -115,7 +117,7 @@ const InvestorDetailsForm = () => {
                     ))}
                 </div>
 
-                <button type="submit">Submit</button>
+                <button type="submit"> Submit </button>
             </form>
             
            
