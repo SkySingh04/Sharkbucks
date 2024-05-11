@@ -5,10 +5,14 @@ import { doc, setDoc  , getDoc , updateDoc, arrayUnion} from "firebase/firestore
 import { db , auth} from '../firebase';
 import { useEdgeStore } from "../lib/edgestore";
 import { useSearchParams , useRouter } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const [pitch, setPitch] = useState('');
   const { edgestore } = useEdgeStore();
+  const router = useRouter();
   const search = useSearchParams();
   const applicationId = search.get('id')
   const [videoFile, setVideoFile] = useState();
@@ -54,13 +58,17 @@ function App() {
       tags: selectedPreferences,
       videoLink: downloadLink,
     }, { merge: true }); 
+    toast.success('Application submitted successfully');
+    router.push('/viewapplication/?id='+applicationId.toString());
   } catch (e) {
     console.error("Error adding document: ", e);
+    toast.error('Error submitting application');
   }
   };
 
   return (
     <div className="App h-[100%] mb-32">
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="pitchArea">
           <h2 style={{ color: "white", fontWeight:"bold" }}>Submit your pitch, tell us what you need and why!</h2>
@@ -108,6 +116,7 @@ function App() {
           onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : undefined)}
         />
         <button
+        type="button"
         className='border rounded p-2 w-full'
         onClick={async () => {
           if (videoFile) {
@@ -121,6 +130,7 @@ function App() {
             console.log(res);
             if (res.url) {
               setDownloadLink(res.url);
+              toast.success('Video uploaded successfully');
             }
           }
         }}
