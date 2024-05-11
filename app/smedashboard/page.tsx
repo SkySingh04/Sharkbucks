@@ -69,7 +69,7 @@ const DashboardPage: React.FC = () => {
     };
 
     return (
-        <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
+         <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
             <ToastContainer />
             <h1 className="text-4xl font-bold">SME Dashboard</h1>
             <h2 className="text-2xl font-semibold">Existing Loan Applications</h2>

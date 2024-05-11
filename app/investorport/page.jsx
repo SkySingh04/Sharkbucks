@@ -1,25 +1,31 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import{ doc, setDoc, getDoc , updateDoc, arrayUnion} from "firebase/firestore";
+import { onAuthStateChanged } from 'firebase/auth';
+import {auth, db} from '../firebase'
+
 import './page.css';
 
 
 const InvestorDetailsForm = () => {
     const [investorInfo, setInvestorInfo] = useState({
-        fullName: '',
-        address: '',
-        phoneNumber: '',
-        email: '',
-        dob: '',
-        nationality: '',
-        governmentId: '',
-        bankAccountDetails: '',
-        financialStatus: '',
-        investmentHistory: '',
-        tin: '',
         amountToInvest: '',
         investmentDuration: '',
         goals: '',
     });
+    const [userId, setUserId] = useState(null)
+    const router = useRouter()
+    
+    useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid)
+      } else {
+        router.push("/login")
+      }
+    });
+  }, []);
 
     const [availablePreferences, setAvailablePreferences] = useState(['Technology', 'Manufacturing', 'Healthcare', 'Agribusiness', 'Renewable-Energy', 'Education', 'E-commerce', 'Infrastructure', 'Financial-Services', 'Consumer-Goods', 'Artisanal-and-Handicrafts', 'Sustainable-and-Social-Enterprises']);
     const [selectedPreferences, setSelectedPreferences] = useState([]);
@@ -41,11 +47,32 @@ const InvestorDetailsForm = () => {
         setAvailablePreferences(prev => [...prev, preference]);
         setSelectedPreferences(prev => prev.filter(p => p !== preference));
     };
+    const randomID = () => {
+        return Math.floor(Math.random() * 1000000000)
+      };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Investor Information:', investorInfo);
-    };
+        const preferencesId = randomID();
+        try{
+            const preferenceData={
+                preferencesId: preferencesId,
+                amountToInvest: investorInfo.amountToInvest,
+                investmentDuration: investorInfo.investmentDuration,
+                goals: investorInfo.goals,
+                preferences: selectedPreferences
+
+            };
+            const preferenceRef = doc(db, "preferences", userId);
+            await setDoc(preferenceRef, preferenceData);
+            console.log("sdfghjk");
+        }
+            catch (e) {
+                console.error("Error adding/updating document: ", e);
+              }
+
+        }
+        
 
     return (
         
