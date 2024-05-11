@@ -41,7 +41,7 @@ const ViewApplicationPage = () => {
                     <h1 className="application-title">{application.companyName}</h1>
                     <div className="details-grid">
                         <p><strong>Business Type:</strong> {application.businessType}</p>
-                        <p><strong>Tags:</strong> {application.tags.join(', ')}</p>
+                        <p><strong>Tags:</strong> {application?.tags?.join(', ')}</p>
                         <p><strong>Loan Purpose:</strong> {application.loanPurpose}</p>
                         <p><strong>Years in Operation:</strong> {application.yearsInOperation}</p>
                         <p><strong>Annual Revenue:</strong> {application.annualRevenue}</p>

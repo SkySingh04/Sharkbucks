@@ -30,13 +30,13 @@ function SignInForm({userType} : any) {
       .then((userCredential) => {
         // Signed in
         toast.success("Sign in successful");
-        if (userType === "Innovator!") {
+        console.log("userType in signin form", userType)
+        if (userType == "Innovator!") {
           router.push(`/smedashboard`);
         }
-        else if (userType === "Investor!") {
+        else if (userType == "Investor!") {
           router.push(`/investor`);
         }
-        router.push(`/`);
       })
       .catch((error) => {
         const errorCode = error.code;

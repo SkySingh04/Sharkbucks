@@ -70,7 +70,7 @@ const DashboardPage: React.FC = () => {
     };
 
     return (
-        <div>
+         <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
             <ToastContainer />
             <div className='mt-32'>
             <h1 className="section-title">SME Dashboard</h1>

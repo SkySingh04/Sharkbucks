@@ -10,6 +10,7 @@ import { useSearchParams , useRouter } from 'next/navigation'
 export default function App() {
     const auth = getAuth();
     const router = useRouter();
+    const [selectedType, setSelectedType] = useState<string | null>(null);
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if(user){
@@ -28,6 +29,7 @@ export default function App() {
     const searchParams = useSearchParams()
  
     let userType = searchParams.get('userType')
+    console.log(userType)
     if (userType ==="sme"){
         userType = "Innovator!"
     }
@@ -35,7 +37,7 @@ export default function App() {
         userType = "Investor!"
     }
     else{
-        userType = "User!"
+        userType = selectedType
     }
 
   const [type, setType] = useState("signIn");
@@ -77,17 +79,35 @@ export default function App() {
     "container " + (type === "signUp" ? "right-panel-active" : "");
   return (
     <div className="App loginbody">
-        <h1 className="text-center text-5xl mt-[120px] mb-5 text-white">Welcome Back {userType}</h1>
+      {userType ? (
+        <h1 className="text-center text-5xl mt-[120px] mb-5 text-white">
+          Welcome Back {userType}
+        </h1>
+      ) : (
+        <div className="text-center mt-[120px] mb-5">
+          <h1 className="text-5xl text-white">Choose User Type</h1>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => setSelectedType("Innovator!")}
+          >
+            Innovator
+          </button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => setSelectedType("Investor!")}
+          >
+            Investor
+          </button>
+        </div>
+      )}
       <div className={containerClass} id="container">
         <SignUpForm userType={userType} />
-        <SignInForm  userType={userType} />
+        <SignInForm userType={userType} />
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
-              <p>
-                To keep connected with us please login with your personal info
-              </p>
+              <p>To keep connected with us please login with your personal info</p>
               <button
                 className="ghost loginbutton"
                 id="signIn"
@@ -133,8 +153,7 @@ export default function App() {
         </div>
       )}
       <div className="overlay-dialog">
-        
-      <h1 className="text-center text-white">{status}</h1>
+        <h1 className="text-center text-white">{status}</h1>
       </div>
     </div>
   );
