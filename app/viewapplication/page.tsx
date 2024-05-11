@@ -38,7 +38,7 @@ const ViewApplicationPage = () => {
                 <div className="shadow-md grid grid-cols-2 bg-gray-600 rounded-lg gap-4">
                     <h1 className="text-2xl font-bold mb-4">{application.companyName}</h1>
                     <p><strong>Business Type:</strong> {application.businessType}</p>
-                    <p><strong>Tags:</strong> {application.tags.join(', ')}</p>
+                    <p><strong>Tags:</strong> {application?.tags?.join(', ')}</p>
                     <p><strong>Loan Purpose:</strong> {application.loanPurpose}</p>
                     <p><strong>Years in Operation:</strong> {application.yearsInOperation}</p>
                     <p><strong>Annual Revenue:</strong> {application.annualRevenue}</p>

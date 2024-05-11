@@ -1,9 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { useSearchParams } from 'next/navigation';
-import toast from 'react-hot-toast';
+import { doc, getDoc , updateDoc , addDoc , collection} from 'firebase/firestore';
+import { useRouter, useSearchParams } from 'next/navigation';
+// import toast from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase';
     
 
 const LoanForm = () => {
@@ -11,8 +15,60 @@ const LoanForm = () => {
     const [interestRate, setInterestRate] = useState('');
     const [tenure, setTenure] = useState('');
     const [additionalDetails, setAdditionalDetails] = useState('');
-    
-    const handleSubmit = (e) => {
+    const [visibleButtons, setVisibleButtons] = useState(false);
+    const [isFirstTime, setIsFirstTime] = useState(true);
+    const [userId, setUserId] = useState<any>(null);
+    const router = useRouter();
+
+    const handleBidPlace = () => async () => {
+            // Place bid
+            try{
+                const bidRef = await addDoc(collection(db, 'bids'), {
+                    userId: userId,
+                    applicationId: applicationId,
+                    loanAmount: loanAmount,
+                    interestRate: interestRate,
+                    tenure: tenure,
+                    additionalDetails: additionalDetails,
+                    status: 'pending',
+                });
+                console.log('Bid placed with ID:', bidRef.id);
+                toast.success('Free bid placed!');
+            }
+            catch(error){
+                console.log("Error occured " ,  error)
+                toast.error("Failed to Place Bid")
+            }
+            
+        }
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log(user.uid);
+                setUserId(user.uid);
+                fetchUserDetails(user.uid);
+            }
+            else{
+                router.push("/login")
+            }
+        }
+        );
+    }, [userId]);
+    const fetchUserDetails = async (userId: string) => {
+        console.log(userId);
+        const usersRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(usersRef);
+    if (userSnap.exists()) {
+        console.log('User data:', userSnap.data());
+        console.log('FROM DB First time:', userSnap.data().isFirstTime);
+        if (userSnap.data().isFirstTime) {
+            setIsFirstTime(userSnap.data().isFirstTime); // Update isFirstTime state
+        }
+    } else {
+        setIsFirstTime(false);
+    }
+}
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         // Process form submission, e.g., send data to backend
         console.log({
@@ -26,12 +82,13 @@ const LoanForm = () => {
         setInterestRate('');
         setTenure('');
         setAdditionalDetails('');
+        
     };
 
     const search = useSearchParams();
     const applicationId = search.get('id');
     //const applicationId = "822179335";
-    const [application, setApplication] = useState(null);
+    const [application, setApplication] = useState<any>(null);
 
     useEffect(() => {
         // Fetch application details
@@ -60,6 +117,7 @@ const LoanForm = () => {
     return (
         <div className="flex justify-center w-screen  gap-10 mt-10">
             {/* SME Details */}
+            <ToastContainer />
             <div className="w-1/3 mt-20 ml-10  bg-gray-900 text-white p-6 rounded-md shadow-md h-screen">
                 <h2 className="text-xl font-semibold mb-4 text-gray-700">SME Details</h2>
                 <div className=" mx-auto mt-24 flex justify-center w-full">
@@ -132,6 +190,7 @@ const LoanForm = () => {
                 <button
                     type="submit"
                     className="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+                    onClick={()=> handleBidPlace()}
                 >
                     Make a Bid
                 </button>
