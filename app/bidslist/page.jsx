@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 const MyComponent = () => {
     const [filteredBids, setFilteredBids] = useState([]);
     const [names, setNames] = useState({})
+    const[finalizedBids, setFinalizedBids] = useState([]);
     const search = useSearchParams();
     const id = search.get("id")
     console.log(id);
@@ -47,23 +48,35 @@ const MyComponent = () => {
         fetchFilteredBids()
     }, []); // Run this effect only once, on component mount
     // Render your component with filteredBids state
+    const handleFinalizeBid = (bidId) => {
+        console.log('Finalized bid with ID:' , bidId);
+        setFilteredBids(prevFinalizedBids => [ ...prevFinalizedBids , bidId]);
+
+    };
+
     return (
         <div className='h-screen'>
             <h2 className="text-xl font-bold mb-4 mt-32">Bids Received</h2>
             <div className=" grid grid-cols-3 gap-4">
                 {filteredBids.map((bid) => (
+                    
                     <div key={bid.bidId} className="bg-gray-800 text-white rounded-md p-4">
-                        {console.log(names)}
-                        {console.log(bid.userId)}
+                        {/* {console.log(names)} */}
+                        {/* {console.log(bid.userId)} */}
                          <p>Name: {names[bid.userId]}</p> 
                          <p>Rate of Interest: {bid.interestRate}</p>
                          <p>Tenure: {bid.tenure}</p>
                          <button
-                        onClick={() => handleAcceptBid(bid.bidId)}
-                        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        onClick={() => handleFinalizeBid(bid.bidId)}
+                        className={`mt-2 px-4 py-2 rounded-md ${
+                            finalizedBids.includes(bid.bidId)
+                                ? 'bg-gray-500 text-white cursor-not-allowed'
+                                : 'bg-blue-500 text-white hover:bg-blue-600'
+                        }`}
+                        disabled={finalizedBids.includes(bid.bidId)}
                     >
-                        Finalize Bid
-                    </button>
+                        {finalizedBids.includes(bid.bidId) ? 'Finalized' : 'Finalize Bid'}
+                        </button>
                     </div>
                     
                 
