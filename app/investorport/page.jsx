@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './page.css';
 
+
 const InvestorDetailsForm = () => {
     const [investorInfo, setInvestorInfo] = useState({
         fullName: '',
@@ -47,45 +48,13 @@ const InvestorDetailsForm = () => {
     };
 
     return (
+        
         <div className="form-container">
+            
             <form className="investor-form" onSubmit={handleSubmit}>
-                <h2 style={{ color: "white", fontWeight:"bold" }}>Investor Details Form</h2>
-                <div className="form-section">
-                <label>Full Name:</label>
-                <input type="text" name="fullName" value={investorInfo.fullName} onChange={handleInputChange} />
+                <h2 style={{ color: "white", fontWeight:"bold"}}>Investor Details Form</h2>
                 
-                <label>Address:</label>
-                <input type="text" name="address" value={investorInfo.address} onChange={handleInputChange} />
-                
-                <label>Phone Number:</label>
-                <input type="tel" name="phoneNumber" value={investorInfo.phoneNumber} onChange={handleInputChange} />
-                
-                <label>Email Address:</label>
-                <input type="email" name="email" value={investorInfo.email} onChange={handleInputChange} />
-
-                <label>Date of Birth:</label>
-                <input type="date" name="dob" value={investorInfo.dob} onChange={handleInputChange} />
-
-                <label>Nationality:</label>
-                <input type="text" name="nationality" value={investorInfo.nationality} onChange={handleInputChange} />
-
-                <label>Government Issued ID:</label>
-                <input type="text" name="governmentId" value={investorInfo.governmentId} onChange={handleInputChange} />
-            </div>
-
-            <div className="form-section">
-                <label>Bank Account Details:</label>
-                <input type="text" name="bankAccountDetails" value={investorInfo.bankAccountDetails} onChange={handleInputChange} />
-
-                <label>Financial Status:</label>
-                <input type="text" name="financialStatus" value={investorInfo.financialStatus} onChange={handleInputChange} />
-
-                <label>Investment History and Experience:</label>
-                <input type="text" name="investmentHistory" value={investorInfo.investmentHistory} onChange={handleInputChange} />
-
-                <label>Tax Identification Number (TIN):</label>
-                <input type="text" name="tin" value={investorInfo.tin} onChange={handleInputChange} />
-            </div>
+               
 
             <div className="form-section">
                 <label>Amount to Invest:</label>
@@ -122,7 +91,7 @@ const InvestorDetailsForm = () => {
                 <button type="submit">Submit</button>
             </form>
             
-        
+           
         </div>
     );
 };
