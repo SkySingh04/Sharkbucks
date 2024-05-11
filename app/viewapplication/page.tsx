@@ -33,9 +33,9 @@ const ViewApplicationPage = () => {
     }, [applicationId]);
 
     return (
-        <div className=" mx-auto mt-24 flex justify-center w-full">
+        <div className="mx-auto mt-24  ">
             {application && (
-                <div className=" shadow-md bg-blue-800 rounded-lg p-8">
+                <div className="shadow-md grid grid-cols-2 bg-gray-600 rounded-lg gap-4">
                     <h1 className="text-2xl font-bold mb-4">{application.companyName}</h1>
                     <p><strong>Business Type:</strong> {application.businessType}</p>
                     <p><strong>Tags:</strong> {application.tags.join(', ')}</p>
@@ -48,7 +48,7 @@ const ViewApplicationPage = () => {
                     <p><strong>Funding Status:</strong> {application.fundingStatus}</p>
                     <p><strong>Funding Received:</strong> {application.fundingReceived}</p>
                     <p><strong>Loan Amount:</strong> {application.loanAmount}</p>
-                    <p><strong>Video Link:</strong> <a href={application.videoLink} target="_blank" rel="noopener noreferrer" className="text-blue-500">Watch Video</a></p>
+                    <p><strong>Pitch Video Link:</strong> <a href={application.videoLink} target="_blank" rel="noopener noreferrer" className="text-blue-500">Watch Video</a></p>
                 </div>
             )}
         </div>
