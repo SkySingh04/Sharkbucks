@@ -6,6 +6,7 @@ import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import toast from "react-hot-toast";
 function SignUpForm({userType} : any) {
+  console.log("userType in signup form", userType);
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -41,12 +42,12 @@ function SignUpForm({userType} : any) {
         displayName: data.get('firstName') + ' ' + data.get('lastName'),
       });
       toast.success("Sign up successful");
-
+      
       if (userType === "Innovator!") {
-        router.push(`/smedashboard`);
+        router.push(`/newapplication`);
       }
       else if (userType === "Investor!") {
-        router.push(`/investor`);
+        router.push(`/investorport`);
       }
     } catch (error : any) {
       const errorCode = error.code;
