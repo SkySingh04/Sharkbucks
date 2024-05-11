@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import Chatbot from '../components/Chatbot';
 import './page.css'; // Import custom CSS for styling
 import { useRouter } from "next/navigation";
+
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 const SmeListingPage = () => {
@@ -29,32 +30,52 @@ const SmeListingPage = () => {
     };
 
     const handleViewApp = (applicationId) => {
-        // Handle view application logic
+        router.push("/viewapplication/?id=" + applicationId)
     };
 
     return (
-        <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
-            <ToastContainer />
-            <h1 className="text-4xl font-bold">SME Dashboard</h1>
-            <h2 className="text-2xl font-semibold">Existing Loan Applications</h2>
-            <ul className="mt-4">
-                {loanApplications.length === 0 ? (
-                    <li className="text-gray-500">No Loan Applications Found</li>
-                ) : (
-                    loanApplications.map((application) => (
-                        <div key={application.id} className='border border-gray-300 p-4 rounded-md'>
-                            <h3 className='text-xl font-semibold'>{application.companyName}</h3>
-                            <p className='text-xl font-semibold text-white'>Amount: {application.loanAmount}</p>
-                            <p className='text-xl font-semibold text-white'>Status: {application.fundingStatus}</p>
-                            <p className='text-xl font-semibold text-white'>Funding Received: {application.fundingReceived}</p>
-                            <button onClick={()=>{
-                                handleViewApp({applicationId: application.id})
-                            }} className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-2'>View Application</button>
-                        </div>
-                    ))
-                )}
-            </ul>
+        <div>
+            
+            <h1 className="section-title mt-[100px]">Investor Dashboard</h1>
+        
+        <div className='investor-dashboard'>
+            
+            {/* Left half: Loan Applications */}
+            <div className='loan-applications'>
+                <h2 className="section-subtitle">SMEs looking for funding</h2>
+                <div className="applications-list">
+                    {loanApplications.length === 0 ? (
+                        <p className="no-applications">No Loan Applications Found</p>
+                    ) : (
+                        loanApplications.map((application) => (
+                            <div key={application.id} className='application-card'>
+                                <h3 className='company-name'>{application.companyName}</h3>
+                                <p className='loan-details'>Amount: {application.loanAmount}</p>
+                                <p className='loan-details'>Status: {application.fundingStatus}</p>
+                                <p className='loan-details'>Funding Received: {application.fundingReceived}</p>
+                                <div className="button-group">
+                                    <button className='view-button' onClick={() => handleViewApp(application.id)}>
+                                        View Application
+                                    </button>
+                                    <button className='bid-button'
+                                    onClick={()=> router.push("/bidding/?id="+application.id)}>
+
+                                        Bid
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
             </div>
+
+            {/* Right half: Chatbot */}
+            <div className='chatbot'>
+                <h1>We're here to help you! Ask our chatbot Alexa anything you need!</h1>
+                <Chatbot />
+            </div>
+        </div>
+        </div>
     );
 }
 
