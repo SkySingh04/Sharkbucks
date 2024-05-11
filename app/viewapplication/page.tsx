@@ -5,7 +5,6 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import './page.css';
-import Chatbot from '../components/Chatbot';
 
 const ViewApplicationPage = () => {
     const search = useSearchParams();
