@@ -5,6 +5,8 @@ import { useEdgeStore } from "../lib/edgestore";
 import { set, update } from 'firebase/database';
 import { doc, getDocs, setDoc , collection, updateDoc } from 'firebase/firestore';
 import {auth ,  db } from '../firebase';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { useSearchParams , useRouter } from 'next/navigation';
 const UploadPage = () => {
   const search  = useSearchParams();
@@ -49,18 +51,19 @@ const UploadPage = () => {
     }}
     );
     }
+    toast.success("Files uploaded successfully!");
     router.push("/pitch/?id="+applicationNumber+"&userId="+userId);
-
-    
   }
     catch(e){
       console.error(e);
+      toast.error("Error uploading files!");
     }
     console.log("Files uploaded successfully!");
   };
 
   return (
     <div className="max-w-md mx-auto mt-32 p-4 border rounded-lg shadow-lg">
+      <ToastContainer />
       <h2 className="text-2xl font-bold mb-4">Upload Documents</h2>
       <div className="mb-4">
         <label className="block mb-2">Identity Proof:</label>

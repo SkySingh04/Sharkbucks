@@ -2,7 +2,8 @@
 import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from '../firebase';
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 const SmeListingPage = () => {
     const [loanApplications, setLoanApplications] = useState([]);
 
@@ -15,15 +16,18 @@ const SmeListingPage = () => {
             console.log('Fetching loan applications');
             const querySnapshot = await getDocs(collection(db, "applications"));
             const applicationsData = querySnapshot.docs.map(doc => doc.data());
-            console.log(applicationsData);
+            // console.log(applicationsData);
+            toast.success('Loan applications fetched successfully');
             setLoanApplications(applicationsData);
         } catch (error) {
             console.error('Error fetching loan applications:', error);
+            toast.error('Error fetching loan applications');
         }
     };
 
     return (
         <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
+            <ToastContainer />
             <h1 className="text-4xl font-bold">SME Dashboard</h1>
             <h2 className="text-2xl font-semibold">Existing Loan Applications</h2>
             <ul className="mt-4">

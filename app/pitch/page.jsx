@@ -5,6 +5,8 @@ import { doc, setDoc  , getDoc , updateDoc, arrayUnion} from "firebase/firestore
 import { db , auth} from '../firebase';
 import { useEdgeStore } from "../lib/edgestore";
 import { useSearchParams , useRouter } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [pitch, setPitch] = useState('');
@@ -54,13 +56,17 @@ function App() {
       tags: selectedPreferences,
       videoLink: downloadLink,
     }, { merge: true }); 
+    toast.success('Application submitted successfully');
+    router.push('/viewapplication/?id='+applicationId.toString());
   } catch (e) {
     console.error("Error adding document: ", e);
+    toast.error('Error submitting application');
   }
   };
 
   return (
     <div className="App h-[100%] mb-32">
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="pitchArea">
           <h2 style={{ color: "white", fontWeight:"bold" }}>Submit your pitch, tell us what you need and why!</h2>

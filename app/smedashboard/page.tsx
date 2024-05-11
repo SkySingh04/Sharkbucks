@@ -4,6 +4,9 @@ import {auth , db} from '../firebase';
 import { doc, getDoc,getDocs , collection} from "firebase/firestore";
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 const DashboardPage: React.FC = () => {
     const router = useRouter();
     useEffect(() => {
@@ -45,15 +48,18 @@ const DashboardPage: React.FC = () => {
                     }
                 });
                 console.log("Applications found for user:", loggedInUser, applications);
+                toast.success("Applications found!");
                 setLoanApplications(applications);
             }
             // setLoanApplications(docSnap.data());
             else {
-                console.log("No applications found for user:", loggedInUser);   
+                console.log("No applications found for user:", loggedInUser);  
+                toast.warn("No applications found!"); 
                 setLoanApplications([]);
             }
             
         } catch (error) {
+            toast.error("Error fetching loan applications!");
             console.error('Error fetching loan applications:', error);
         }
     };
@@ -64,6 +70,7 @@ const DashboardPage: React.FC = () => {
 
     return (
         <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
+            <ToastContainer />
             <h1 className="text-4xl font-bold">SME Dashboard</h1>
             <h2 className="text-2xl font-semibold">Existing Loan Applications</h2>
             <ul className="mt-4">

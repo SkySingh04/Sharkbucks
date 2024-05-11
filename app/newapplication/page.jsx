@@ -4,6 +4,9 @@ import {useRouter} from 'next/navigation'
 import { doc, setDoc  , getDoc , updateDoc, arrayUnion} from "firebase/firestore"; 
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../firebase';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const LoanApplicationForm = () => {
@@ -67,8 +70,10 @@ const LoanApplicationForm = () => {
         id : applicationId,
         userId : loggedInUser
     } , {merge : true})  
+    toast.success('Application submitted successfully');
       router.push("/upload?userId="+loggedInUser+"&id="+applicationId);
     } catch (e) {
+      toast.error('Error submitting application');
       console.error("Error adding/updating document: ", e);
     }
    
@@ -76,6 +81,7 @@ const LoanApplicationForm = () => {
 
   return (
     <div className="max-w-md mx-auto mt-[6em]">
+      <ToastContainer />
       <h2 className="text-xl font-bold mb-4 mt-12">Loan Application Form</h2>
       <form>
         <div className="mb-4">
