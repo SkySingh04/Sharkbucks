@@ -8,9 +8,11 @@ import { useSearchParams , useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
+
 function App() {
   const [pitch, setPitch] = useState('');
   const { edgestore } = useEdgeStore();
+  const router = useRouter();
   const search = useSearchParams();
   const applicationId = search.get('id')
   const [videoFile, setVideoFile] = useState();
@@ -114,6 +116,7 @@ function App() {
           onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : undefined)}
         />
         <button
+        type="button"
         className='border rounded p-2 w-full'
         onClick={async () => {
           if (videoFile) {
@@ -127,6 +130,7 @@ function App() {
             console.log(res);
             if (res.url) {
               setDownloadLink(res.url);
+              toast.success('Video uploaded successfully');
             }
           }
         }}
