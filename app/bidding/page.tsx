@@ -22,23 +22,7 @@ const LoanForm = () => {
 
     const handleBidPlace = () => async () => {
             // Place bid
-            try{
-                const bidRef = await addDoc(collection(db, 'bids'), {
-                    userId: userId,
-                    applicationId: applicationId,
-                    loanAmount: loanAmount,
-                    interestRate: interestRate,
-                    tenure: tenure,
-                    additionalDetails: additionalDetails,
-                    status: 'pending',
-                });
-                console.log('Bid placed with ID:', bidRef.id);
-                toast.success('Free bid placed!');
-            }
-            catch(error){
-                console.log("Error occured " ,  error)
-                toast.error("Failed to Place Bid")
-            }
+            
             
         }
     useEffect(() => {
@@ -68,7 +52,7 @@ const LoanForm = () => {
         setIsFirstTime(false);
     }
 }
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         // Process form submission, e.g., send data to backend
         console.log({
@@ -82,6 +66,25 @@ const LoanForm = () => {
         setInterestRate('');
         setTenure('');
         setAdditionalDetails('');
+        console.log("Calling handle bid place")
+        console.log("PLacing bidd")
+            try{
+                const bidRef = await addDoc(collection(db, 'bids'), {
+                    userId: userId,
+                    applicationId: applicationId,
+                    loanAmount: loanAmount,
+                    interestRate: interestRate,
+                    tenure: tenure,
+                    additionalDetails: additionalDetails,
+                    status: 'pending',
+                });
+                console.log('Bid placed with ID:', bidRef.id);
+                toast.success('Free bid placed!');
+            }
+            catch(error){
+                console.log("Error occured " ,  error)
+                toast.error("Failed to Place Bid")
+            }
         
     };
 
@@ -190,7 +193,7 @@ const LoanForm = () => {
                 <button
                     type="submit"
                     className="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
-                    onClick={()=> handleBidPlace()}
+                    // onClick={handleBidPlace}
                 >
                     Make a Bid
                 </button>

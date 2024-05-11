@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/smedashboard/page.tsx", "app/viewapplication/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/smedashboard/page.jsx", "app/viewapplication/page.tsx", "app/bidslist/page.jsx"],
   "exclude": ["node_modules"]
 }
