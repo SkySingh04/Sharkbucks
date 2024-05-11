@@ -25,7 +25,7 @@ const DashboardPage: React.FC = () => {
 
     const handleViewApp = ({ applicationId }: any) => {
         // Push to view application page with the application id as a query parameter
-        router.push(`/viewapplication?applicationId=${applicationId}`);
+        router.push(`/viewapplication?id=${applicationId}`);
     }
 
     const [loanApplications, setLoanApplications] = useState<any>([]);
