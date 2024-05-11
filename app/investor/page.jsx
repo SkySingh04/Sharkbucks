@@ -30,7 +30,7 @@ const SmeListingPage = () => {
     };
 
     const handleViewApp = (applicationId) => {
-        router.push("/viewapplication/?id=" + applicationId)
+        router.push("/lication/?id=" + applicationId)
     };
 
     return (
