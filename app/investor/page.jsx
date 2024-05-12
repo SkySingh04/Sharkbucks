@@ -72,7 +72,7 @@ const SmeListingPage = () => {
 
             {/* Right half: Chatbot */}
             <div className='chatbot'>
-                <h1>We're here to help you! Ask our chatbot Alexa anything you need!</h1>
+                <h1>Want to know about the latest trends to invest on? Ask our chatbot!</h1>
                 <Chatbot />
             </div>
         </div>
