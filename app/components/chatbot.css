@@ -1,7 +1,7 @@
 .chat-container{
     background-color: #0f1a47;
     font-family: sans-serif;
-    height: 100%;
+    height: screen;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
