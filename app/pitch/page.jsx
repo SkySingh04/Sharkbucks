@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div className="App h-[100%] mb-32">
+    <div className="App h-screen mb-32">
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="pitchArea">

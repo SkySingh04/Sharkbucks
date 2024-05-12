@@ -87,13 +87,13 @@ export default function App() {
         <div className="text-center mt-[120px] mb-5">
           <h1 className="text-5xl text-white">Choose User Type</h1>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white m-2 font-bold py-2 px-4 rounded"
             onClick={() => setSelectedType("Innovator!")}
           >
             Innovator
           </button>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white m-2 font-bold py-2 px-4 rounded"
             onClick={() => setSelectedType("Investor!")}
           >
             Investor

@@ -19,12 +19,6 @@ const LoanForm = () => {
     const [isFirstTime, setIsFirstTime] = useState(true);
     const [userId, setUserId] = useState<any>(null);
     const router = useRouter();
-
-    const handleBidPlace = () => async () => {
-            // Place bid
-            
-            
-        }
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -79,7 +73,8 @@ const LoanForm = () => {
                     status: 'pending',
                 });
                 console.log('Bid placed with ID:', bidRef.id);
-                toast.success('Free bid placed!');
+                toast.success('Bid placed!');
+                router.push("/")
             }
             catch(error){
                 console.log("Error occured " ,  error)
@@ -118,12 +113,12 @@ const LoanForm = () => {
 
 
     return (
-        <div className="flex justify-center w-screen  gap-10 mt-10">
+        <div className="flex justify-center w-[100%]  gap-10 mt-10 h-[700px]">
             {/* SME Details */}
             <ToastContainer />
-            <div className="w-1/3 mt-20 ml-10  bg-gray-900 text-white p-6 rounded-md shadow-md h-screen">
+            <div className="w-1/3 mt-20 ml-10  bg-gray-900 text-white p-6 rounded-md shadow-md h-[600px]">
                 <h2 className="text-xl font-semibold mb-4 text-gray-700">SME Details</h2>
-                <div className=" mx-auto mt-24 flex justify-center w-full">
+                <div className=" mx-auto mt-16 flex justify-center w-full">
             {application && (
                 <div className=" shadow-md  bg-blue-800 rounded-lg p-8">
                     <h1 className="text-2xl font-bold mb-4">{application.companyName}</h1>
@@ -137,7 +132,7 @@ const LoanForm = () => {
             )}
         </div>
                 </div>
-        <div className="w-1/3  mt-20 bg-gray-900 text-white p-6 rounded-md shadow-md h-screen ">
+        <div className="w-1/3  mt-20 bg-gray-900 text-white p-6 rounded-md shadow-md h-[500px] ">
             <h2 className="text-xl font-semibold mb-4 text-gray-700 ">Loan Details</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">

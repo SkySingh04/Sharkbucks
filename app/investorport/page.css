@@ -6,6 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: screen;
     
 
 }
@@ -17,7 +18,7 @@ body {
     
     width: 80%;
     max-width: 600px;
-    
+    height:screen;
     align-items: center;
    
 
