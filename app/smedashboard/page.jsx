@@ -115,17 +115,6 @@ const DashboardPage = () => {
                 </div>
                 <div className='right-side'></div>
             </div>
-<<<<<<< HEAD
-            
-            <div className='right-side'>
-                <h1>We're here to help you! Ask our chatbot Alexa anything you need!</h1>
-                <Chatbot />
-            </div>
-            <div className='right-side'>
-            </div>
-        </div>
-=======
->>>>>>> 3ee0f91750c4b0dd8fc325840de355b60b6f9ed3
         </div>
     );
 };
