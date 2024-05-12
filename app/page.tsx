@@ -6,7 +6,7 @@ import styles from './Home.module.css';
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-4xl font-bold text-center">#Everyone is SHARK</h1>
+      <h1 className="text-4xl font-bold text-center">#EveryoneIsASHARK</h1>
       <div className="flex flex-wrap items-center justify-center mt-8 md:space-x-[100px]">
         <Link href={{ pathname: '/login', query: { userType: 'investor' } }}>
           <div className={`card bg-gray-900 mx-6 investors-card items-center justify-center lg:h-[300px] lg:w-[500px] text-white font-semibold px-6 py-4 rounded-md cursor-pointer transition-transform  duration-300 ${styles.hoverEffect}`}>
