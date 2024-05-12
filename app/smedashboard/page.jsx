@@ -76,44 +76,46 @@ const DashboardPage = () => {
     };
 
     return (
-         <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
+        <div className='mt-[6rem] h-screen flex flex-col space-y-10 items-center'>
             <ToastContainer />
             <div className='mt-32'>
-            <h1 className="section-title">SME Dashboard</h1>
-               
-            <button className="create-application-button flex justify-end mx-auto " onClick={createNewApplication}>Create New Application</button>
-
-      
-        </div>
-        <div className='dashboard-container'>
-            
-            <div className='left-side'>
-                
-                <h2 className="section-subtitle">Existing Loan Applications</h2>
-                <ul className="applications-list">
-                    {loanApplications.length === 0? (
-                        <li className="no-applications">No Loan Applications Found</li>
-                    ) : (
-                        loanApplications.map((application) => (
-                            <div key={application.id} className='application-card'>
-                                <h3 className='company-name'>{application.companyName}</h3>
-                                <p className='loan-details'>Amount: {application.loanAmount}</p>
-                                <p className='loan-details'>Status: {application.fundingStatus}</p>
-                                <p className='loan-details'>Funding Received: {application.fundingReceived}</p>
-                                <div className='buttons'>
-                                <button className='view-button' onClick={() => { handleViewApp({ applicationId: application.id }) }}>
-                                    View Application
-                                </button>
-                                <button className='view-bid' onClick={() => {handleClick({applicationId: application.id}) }}>
-                                    View Bid
-                                </button>
-                                </div>
-                            </div>
-                        ))
-                    )}
-                </ul>
-                
+                <h1 className="section-title">SME Dashboard</h1>
+                <button className="create-application-button flex justify-end mx-auto " onClick={createNewApplication}>Create New Application</button>
             </div>
+            <div className='dashboard-container'>
+                <div className='left-side'>
+                    <h2 className="section-subtitle">Existing Loan Applications</h2>
+                    <ul className="applications-list">
+                        {loanApplications.length === 0 ? (
+                            <li className="no-applications">No Loan Applications Found</li>
+                        ) : (
+                            loanApplications.map((application) => (
+                                <div key={application.id} className={`application-card ${application.fundingStatus === 'finalized' ? 'bg-green-800' : ''}`}>
+                                    <h3 className='company-name'>{application.companyName}</h3>
+                                    <p className='loan-details'>Amount: {application.loanAmount}</p>
+                                    <p className='loan-details'>Status: {application.fundingStatus}</p>
+                                    <div className='buttons'>
+                                        <button className='view-button' onClick={() => { handleViewApp({ applicationId: application.id }) }}>
+                                            View Application
+                                        </button>
+                                        {application.fundingStatus !== 'finalized' && (
+                                            <button className='view-bid' onClick={() => { handleClick({ applicationId: application.id }) }}>
+                                                View Bids
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </ul>
+                </div>
+                <div className='right-side'>
+                    <h1>We're here to help you! Ask our chatbot Alexa anything you need!</h1>
+                    <Chatbot />
+                </div>
+                <div className='right-side'></div>
+            </div>
+<<<<<<< HEAD
             
             <div className='right-side'>
                 <h1>We're here to help you! Ask our chatbot Alexa anything you need!</h1>
@@ -122,6 +124,8 @@ const DashboardPage = () => {
             <div className='right-side'>
             </div>
         </div>
+=======
+>>>>>>> 3ee0f91750c4b0dd8fc325840de355b60b6f9ed3
         </div>
     );
 };

@@ -20,9 +20,10 @@ const SmeListingPage = () => {
             console.log('Fetching loan applications');
             const querySnapshot = await getDocs(collection(db, "applications"));
             const applicationsData = querySnapshot.docs.map(doc => doc.data());
-            // console.log(applicationsData);
+            const filteredApplications = applicationsData.filter(application => application.fundingStatus !== 'finalized');
+            // console.log(filteredApplications);
             toast.success('Loan applications fetched successfully');
-            setLoanApplications(applicationsData);
+            setLoanApplications(filteredApplications);
         } catch (error) {
             console.error('Error fetching loan applications:', error);
             toast.error('Error fetching loan applications');
@@ -37,7 +38,7 @@ const SmeListingPage = () => {
         <div className="page">
             
             <h1 className="section-title mt-[100px]">Investor Dashboard</h1>
-            <button className="pref flex justify-end mx-auto" onClick={()=>{router.push("/investorport")}}> View Personalised Preferences </button>
+            <button className="pref flex justify-end mx-auto border border-amber-500 p-4 " onClick={()=>{router.push("/investorport")}}> View Personalised Preferences </button>
         <div className='investor-dashboard'>
             
             {/* Left half: Loan Applications */}
