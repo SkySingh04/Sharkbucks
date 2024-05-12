@@ -11,6 +11,8 @@ const Chatbot = () => {
     { message: "Hello, I am Alexa. How can I help you?", type: "bot" },
   ]);
 
+  const geminiAPIKEY : any= process.env.NEXT_PUBLIC_GEMINI_KEY ;
+
   useEffect(() => {
     console.log(botresponse);
     // Add any other logic that depends on botresponse here
@@ -22,7 +24,8 @@ const Chatbot = () => {
         ...prevBotresponse,
         { message: msg, type: "user" },
       ]);
-      const genAI = new GoogleGenerativeAI("AIzaSyCPx_cIsdbeO_qTTtZsXryAZubE_oZWXdo");
+
+      const genAI = new GoogleGenerativeAI(geminiAPIKEY);
           const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
           const generationConfig = {
                   temperature: 1,
