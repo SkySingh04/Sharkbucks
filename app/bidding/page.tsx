@@ -120,7 +120,7 @@ const LoanForm = () => {
                 <h2 className="text-xl font-semibold mb-4 text-gray-700">SME Details</h2>
                 <div className=" mx-auto mt-16 flex justify-center w-full">
             {application && (
-                <div className=" shadow-md  bg-blue-800 rounded-lg p-8">
+                <div className=" shadow-md   rounded-lg p-8">
                     <h1 className="text-2xl font-bold mb-4">{application.companyName}</h1>
                     <br></br>
                     <p className='text-xl'><strong>Loan Purpose:</strong> {application.loanPurpose}</p>
@@ -176,7 +176,7 @@ const LoanForm = () => {
                 <br></br>
                 <div className="mb-4">
                     <label htmlFor="additionalDetails" className="block text-sm font-medium text-gray-700">Additional Details</label>
-                    <textarea
+                    <input
                         id="additionalDetails"
                         className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
                         placeholder="Provide additional details"

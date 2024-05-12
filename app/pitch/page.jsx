@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div className="App h-screen mb-32">
+    <div className="App h-screen  mb-[400px]">
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="pitchArea">
@@ -139,7 +139,7 @@ function App() {
       </button>
       </div>
         <span/>
-        <div className="submitButton">
+        <div className="submitButton ">
           <button type="submit">Submit</button>
         </div>
       </form>
