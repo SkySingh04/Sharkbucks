@@ -5,9 +5,11 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import './page.css';
+import { useRouter } from "next/navigation";
 
 const ViewApplicationPage = () => {
     const search = useSearchParams();
+    const router = useRouter();
     const applicationId = search.get('id');
     const [application, setApplication] = useState<any>(null);
 
@@ -61,9 +63,16 @@ const ViewApplicationPage = () => {
                             </a>
                         </p>
                     </div>
-
+                    <button onClick={()=> router.push("/bidding/?id="+application.id)}
+                    type="submit"
+                    className="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+                    // onClick={handleBidPlace}
+                >
+                    Click to Bid
+                </button>
 
                 </div>
+                
             )}
         </div>
     );
