@@ -114,6 +114,7 @@ const DashboardPage = () => {
                 </ul>
                 
             </div>
+            
             <div className='right-side'>
                 <h1>We're here to help you! Ask our chatbot Alexa anything you need!</h1>
                 <Chatbot />
