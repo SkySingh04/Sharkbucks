@@ -77,8 +77,8 @@ const InvestorDetailsForm = () => {
         }
 
     return (
-        
-        <div className="form-container">
+        <div className='h-screen w-full mb-[300px] flex flex-col items-center justify-center '>
+        <div className="form-container  ">
             
             <form className="investor-form" onSubmit={handleSubmit}>
                 <h2 style={{ color: "white", fontWeight:"bold"}}>Investor Details Form</h2>
@@ -121,6 +121,7 @@ const InvestorDetailsForm = () => {
             </form>
             
            
+        </div>
         </div>
     );
 };
