@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sharkbucks
+
+## Introduction
+
+Welcome to Sharkbucks - your gateway to revolutionizing financial inclusion! 🦈💼
+
+Sharkbucks is a cutting-edge auction platform designed to unite investors and SMEs seamlessly. Our platform offers investors easy access to pitches and a plethora of resources, empowering them to bid on loan tenures, interest amounts, and capital, all while competing with other investors. With our finely-tuned Machine Learning model, we ensure that SMEs are matched with investors whose preferences align, optimizing the investment process. For SMEs, Sharkbucks offers unparalleled access to competitive loan offers, facilitating easy access to much-needed funds. Our platform operates on a small platform fee, charged only upon the successful approval of a loan application, ensuring sustainability while providing essential services to both investors and SMEs. Sharkbucks platform also offers a NLP Chatbot feature that serves as a valuable resource for navigating government schemes and exploring investment opportunities, serving as a useful tool for both SMEs and Investors alike.
+
+## Features
+
+- **Investor Access**: Investors can easily access pitches and resources to bid on loan tenures, interest amounts, and capital.
+- **Machine Learning Model**: Our platform utilizes a finely-tuned ML model to match SMEs with investors whose preferences align, streamlining the investment process.
+- **SME Access**: SMEs gain access to competitive loan offers, facilitating easy access to much-needed funds.
+- **Sustainable Model**: Sharkbucks operates on a small platform fee, charged only upon the successful approval of a loan application, ensuring sustainability.
+- **NLP Chatbot Feature**: The platform offers an NLP Chatbot feature for navigating government schemes and exploring investment opportunities.
 
 ## Getting Started
 
-First, run the development server:
+To get started with Sharkbucks, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the Repository**: `git clone https://github.com/your-username/sharkbucks.git`
+2. **Install Dependencies**: `cd sharkbucks` and `npm install`
+3. **Run the Application**: `npm run dev`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We welcome contributions from the community to enhance Sharkbucks further! To contribute, follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature`)
+3. Make your changes
+4. Commit your changes (`git commit -am 'Add new feature'`)
+5. Push to the branch (`git push origin feature`)
+6. Create a new Pull Request
 
-## Learn More
+## Credits
 
-To learn more about Next.js, take a look at the following resources:
+Sharkbucks was created by [Team Nos Code] during HackBanglore 2024. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Akash Singh](https://github.com/Akash-Singh04)
+- [Tarun Kataruka](https://github.com/Tarun-Kataruka)
+- [Hemamalini Srinivas](https://github.com/1DS22CS091hemamalini)
+- [Abhyuday Hari Prasad](https://github.com/abhyudayhari)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT License](LICENSE).
