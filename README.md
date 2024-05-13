@@ -22,6 +22,15 @@ To get started with Sharkbucks, follow these steps:
 2. **Install Dependencies**: `cd sharkbucks` and `npm install`
 3. **Run the Application**: `npm run dev`
 
+## Contributors
+
+Sharkbucks was created by Team Nos Code during HackBanglore 2024. For the full list of Contributors check [CONTRIBUTORS](https://github.com/Akash-Singh04/Sharkbucks/graphs/contributors) 
+
+- [Akash Singh](https://github.com/Akash-Singh04)
+- [Tarun Kataruka](https://github.com/Tarun-Kataruka)
+- [Hemamalini Srinivas](https://github.com/1DS22CS091hemamalini)
+- [Abhyuday Hari Prasad](https://github.com/abhyudayhari)
+
 ## Contributing
 
 We welcome contributions from the community to enhance Sharkbucks further! To contribute, follow these steps:
@@ -32,15 +41,6 @@ We welcome contributions from the community to enhance Sharkbucks further! To co
 4. Commit your changes (`git commit -am 'Add new feature'`)
 5. Push to the branch (`git push origin feature`)
 6. Create a new Pull Request
-
-## Credits
-
-Sharkbucks was created by [Team Nos Code] during HackBanglore 2024. 
-
-- [Akash Singh](https://github.com/Akash-Singh04)
-- [Tarun Kataruka](https://github.com/Tarun-Kataruka)
-- [Hemamalini Srinivas](https://github.com/1DS22CS091hemamalini)
-- [Abhyuday Hari Prasad](https://github.com/abhyudayhari)
 
 ## License
 
