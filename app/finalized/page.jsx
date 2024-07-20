@@ -15,23 +15,29 @@ const FinalizedBidsPage = () => {
     
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
+            console.log('User:', user);
             if (user) {
                 setUserId(user.uid);
+                fetchFinalizedBids(user.uid);
             } else {
                 router.push("/login");
             }
         });
-        fetchFinalizedBids();
+        
     }, []);
 
-    const fetchFinalizedBids = async () => {
+    const fetchFinalizedBids = async (userId) => {
         try {
             console.log('Fetching finalized bids');
             const querySnapshot = await getDocs(collection(db, "bids"));
             const applicationsData = querySnapshot.docs.map(doc => doc.data());
+            console.log(applicationsData);
+            console.log(userId);
             const filteredApplications = applicationsData.filter(application => application.status === 'finalized' && application.userId === userId);
             toast.success('Finalized bids fetched successfully');
+            console.log(filteredApplications);
             setFinalizedBids(filteredApplications);
+
         } catch (error) {
             console.error('Error fetching finalized bids:', error);
             toast.error('Error fetching finalized bids');
