@@ -8,7 +8,7 @@ Sharkbucks is a cutting-edge auction platform designed to unite investors and SM
 
 ### Presentation Link : [Drive](https://drive.google.com/file/d/18jro9yVBT8Hoh17EqU1Okyy1JAoUWs75/view?usp=sharing)
 
-### Demo Video Link :  [Drive](https://drive.google.com/file/d/1tGseSuNU1rtm8VCTEkXZg5Bg1J3g_opw/view)
+### Demo Video Link : [Drive](https://drive.google.com/file/d/1tGseSuNU1rtm8VCTEkXZg5Bg1J3g_opw/view)
 
 ## Features
 
@@ -51,7 +51,8 @@ Ensure you have the following installed:
 module.exports = {
   networks: {
     zetachain: {
-      provider: () => new HDWalletProvider(mnemonic, "https://zetachain-rpc-url"),
+      provider: () =>
+        new HDWalletProvider(mnemonic, "https://zetachain-rpc-url"),
       network_id: 1337,
       gas: 4500000,
       gasPrice: 10000000000,
@@ -74,10 +75,9 @@ module.exports = {
 truffle migrate --network zetachain
 ```
 
-
 ## Contributors
 
-Sharkbucks was created by Team Nos Code during HackBanglore 2024. For the full list of Contributors check [CONTRIBUTORS](https://github.com/Akash-Singh04/Sharkbucks/graphs/contributors) 
+Sharkbucks was created by Team Nos Code during HackBanglore 2024. For the full list of Contributors check [CONTRIBUTORS](https://github.com/Akash-Singh04/Sharkbucks/graphs/contributors)
 
 - [Akash Singh](https://github.com/Akash-Singh04)
 - [Tarun Kataruka](https://github.com/Tarun-Kataruka)
@@ -88,12 +88,27 @@ Sharkbucks was created by Team Nos Code during HackBanglore 2024. For the full l
 
 We welcome contributions from the community to enhance Sharkbucks further! To contribute, follow these steps:
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature`)
-3. Make your changes
-4. Commit your changes (`git commit -am 'Add new feature'`)
-5. Push to the branch (`git push origin feature`)
-6. Create a new Pull Request
+1. **Fork the repository**
+2. **Create a new branch**:
+
+   ```sh
+   git checkout -b feature
+   ```
+
+3. **Make your changes**
+4. **Commit your changes**:
+
+   ```sh
+   git commit -am 'Add new feature'
+   ```
+
+5. **Push to the branch**:
+
+   ```sh
+   git push origin feature
+   ```
+
+6. **Create a new Pull Request**
 
 ## License
 
