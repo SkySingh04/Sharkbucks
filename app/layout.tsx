@@ -8,7 +8,7 @@ import { EdgeStoreProvider } from '../app/lib/edgestore';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SharkLeap",
+  title: "SharkBucks",
   description: "Everyone is a shark",
 };
 
