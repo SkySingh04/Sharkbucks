@@ -7,14 +7,24 @@ import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth"; // Import onAuthStateChanged for Firebase Authentication
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { fundStartup } from "../utils/contracts";
 const FinalizedBidsPage = () => {
-    const [finalizedBids, setFinalizedBids] = useState([]);
+    const handleFund = async (startupId: number, amount: number) => {
+        try {
+            await fundStartup(startupId, amount);
+            alert("Startup funded successfully!");
+        } catch (error) {
+            console.error(error);
+            alert("Failed to fund startup");
+        }
+    };
+
+    const [finalizedBids, setFinalizedBids] = useState<any>([]);
     const [userId, setUserId] = useState(null);
     const router = useRouter();
     
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, (user : any) => {
             console.log('User:', user);
             if (user) {
                 setUserId(user.uid);
@@ -26,7 +36,7 @@ const FinalizedBidsPage = () => {
         
     }, []);
 
-    const fetchFinalizedBids = async (userId) => {
+    const fetchFinalizedBids = async (userId : any) => {
         try {
             console.log('Fetching finalized bids');
             const querySnapshot = await getDocs(collection(db, "bids"));
@@ -60,7 +70,7 @@ const FinalizedBidsPage = () => {
                         {finalizedBids.length === 0 ? (
                             <p className="no-applications">No Finalized Bids Found</p>
                         ) : (
-                            finalizedBids.map((application) => (
+                            finalizedBids.map((application : any) => (
                                 <div key={application.id} className='application-card'>
                                     <h3 className='company-name'>{application.companyName}</h3>
                                     <p className='loan-details'>Amount: {application.loanAmount}</p>
@@ -70,7 +80,7 @@ const FinalizedBidsPage = () => {
                                         <button className='view-button' onClick={() => router.push("/viewapplication/?id=" + application.id)}>
                                             View Application
                                         </button>
-                                        <button className='bid-button' onClick={handlePaymentPage}>
+                                        <button className='bid-button' onClick={async () => await handleFund(application.applicationId , application.loanAmount)}>
                                             Finalize Payment
                                         </button>
                                     </div>
