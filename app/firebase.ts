@@ -22,3 +22,5 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export  {auth ,  db};
+
+// fear my wrath noobs!!

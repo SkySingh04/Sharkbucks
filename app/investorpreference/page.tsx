@@ -143,7 +143,6 @@ for (let i=0;i<allApplications.length;i++){
         for (let k=0;k<application['preferences'].length;k++){
         if (allApplications[i]['tags'][j].includes(application['preferences'][k])){
             score+=1;
-            break;
             // id.push(allApplications[i]['id']);
         }}
         

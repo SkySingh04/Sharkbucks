@@ -7,10 +7,22 @@ import { auth, db } from '../firebase';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
-
+  import { createStartup } from "../utils/contract";
 
 const LoanApplicationForm = () => {
   const [loggedInUser, setLoggedInUser] = useState("")
+  const [goal, setGoal] = useState<number>(0);
+  
+  const handleCreate = async () => {
+      try {
+          await createStartup(goal);
+          toast.success("Startup created successfully on blockchain!");
+      } catch (error) {
+          console.error(error);
+          toast.error("Failed to create startup on blockchain");
+      }
+  };
+
   const router = useRouter()
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -70,6 +82,8 @@ const LoanApplicationForm = () => {
         id : applicationId,
         userId : loggedInUser
     } , {merge : true})  
+    setGoal(parseInt(formData.loanAmount));
+    await handleCreate();
     toast.success('Application submitted successfully');
       router.push("/upload?userId="+loggedInUser+"&id="+applicationId);
     } catch (e) {
@@ -178,6 +192,7 @@ const LoanApplicationForm = () => {
               value={formData.loanAmount}
               onChange={handleChange}
               className="w-full border rounded px-4 py-2"
+                placeholder="Goal (ETH)"
             />
           </label>
         </div>
