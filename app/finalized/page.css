@@ -1,20 +1,28 @@
 .page {
     background-color: #05101b;
     color: #fff; /* Ensure text is readable in dark mode */
-    position: relative; /* To ensure the finalized bids box is positioned relative to the page */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the content horizontally */
+    justify-content: center; /* Center align the content vertically */
+    min-height: 100vh; /* Ensure the page takes up at least 100% of the viewport height */
     padding: 20px; /* Add padding to the entire page */
 }
 
 .investor-dashboard {
-    display: grid;
-    margin-top: 100px;
-    grid-template-columns: 1fr 1fr;
-    height: 100%;
-    position: relative; /* To position the finalized bids box */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the content horizontally */
+    justify-content: center; /* Center align the content vertically */
+    gap: 20px; /* Add gap between columns */
+    width: 100%; /* Ensure it takes full width */
+    max-width: 1200px; /* Set a max width */
+    margin-top: 50px; /* Adjust margin as needed */
 }
 
-.section-title, .section-subtitle, .company-name, .loan-details, .no-applications, .chatbot h1 {
+.section-title, .section-subtitle, .company-name, .loan-details, .no-applications {
     color: #fff; /* Ensure text is readable in dark mode */
+    text-align: center; /* Center align the text */
 }
 
 .pref-button, .view-button, .bid-button, .payment-button {
@@ -43,6 +51,7 @@
 }
 
 .applications-list {
+    width: 700px;
     overflow-y: auto;
     max-height: calc(100vh - 100px); /* Adjust as needed */
 }
@@ -55,9 +64,6 @@
 }
 
 .finalized-bids-box {
-    position: absolute; /* Fix the position so it stays on the right */
-    top: 0px; /* Add some space from the top */
-    right: 100px; /* Add some space from the right */
     background-color: #1e1e1e;
     padding: 20px;
     border-radius: 8px;
@@ -68,6 +74,7 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Center align the content */
+    margin-top: 20px; /* Add space at the top */
 }
 
 .box-title {
@@ -80,10 +87,4 @@
 .button-group {
     display: flex;
     justify-content: space-between;
-}
-
-.chatbot {
-    margin-top: 100px;
-    padding: 20px;
-    overflow-y: auto;
 }
