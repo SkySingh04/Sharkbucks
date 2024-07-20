@@ -25,6 +25,9 @@ To get started with Sharkbucks, follow these steps:
 1. **Clone the Repository**: `git clone https://github.com/your-username/sharkbucks.git`
 2. **Install Dependencies**: `cd sharkbucks` and `npm install`
 3. **Run the Application**: `npm run dev`
+4. **Start Blockchain server** : `truffle develop`
+
+
 
 ## Contributors
 
