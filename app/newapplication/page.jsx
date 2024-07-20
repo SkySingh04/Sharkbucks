@@ -7,11 +7,11 @@ import { auth, db } from '../firebase';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
-  import { createStartup } from "../utils/contract";
+  import { createStartup } from "../utils/contracts";
 
 const LoanApplicationForm = () => {
   const [loggedInUser, setLoggedInUser] = useState("")
-  const [goal, setGoal] = useState<number>(0);
+  const [goal, setGoal] = useState(0);
   
   const handleCreate = async () => {
       try {
@@ -83,7 +83,11 @@ const LoanApplicationForm = () => {
         userId : loggedInUser
     } , {merge : true})  
     setGoal(parseInt(formData.loanAmount));
-    await handleCreate();
+    try{await handleCreate();}
+    catch(e){
+      console.error("Error creating startup: ", e);
+      return; 
+    }
     toast.success('Application submitted successfully');
       router.push("/upload?userId="+loggedInUser+"&id="+applicationId);
     } catch (e) {
