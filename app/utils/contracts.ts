@@ -99,7 +99,7 @@ const COIN_STORE = `0x1::coin::CoinStore<${APTOS_COIN}>`;
 const config = new AptosConfig({ network: Network.TESTNET });
 const aptos = new Aptos(config);
  
-async function get_acc_no(id: string) {
+async function get_acc_no(id: number) {
     const collectionRef = collection(db, "applications");
     
     // Create a query to filter by id
@@ -158,7 +158,7 @@ export async function createStartup(startup_id: number){
 
 
 
-export async function fundStartup(startupId: string, amt: number) {
+export async function fundStartup(startupId: number, amt: number) {
     // Await the resolution of the asynchronous function
     const startup_acc = await get_acc_no(startupId);
     await aptos.fundAccount({
