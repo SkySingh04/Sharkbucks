@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aptos-labs/ts-sdk": "^1.27.1",
     "@edgestore/react": "^0.1.6",
     "@edgestore/server": "^0.1.6",
     "@google/generative-ai": "^0.11.1",
